@@ -1,10 +1,12 @@
+DELIMITER //
+
 CREATE PROCEDURE AddBonus(
     IN p_user_id INT,
     IN p_project_name VARCHAR(255),
     IN p_score INT
 )
 BEGIN
-    DECLARE v_project_id INT DEFAULT NULL;
+    DECLARE v_project_id INT;
 
     -- Check if the project already exists
     SELECT id INTO v_project_id
@@ -21,4 +23,6 @@ BEGIN
     -- Insert the correction
     INSERT INTO corrections (user_id, project_id, score)
     VALUES (p_user_id, v_project_id, p_score);
-END;
+END //
+
+DELIMITER ;
