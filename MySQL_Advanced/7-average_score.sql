@@ -1,3 +1,4 @@
+-- Create the stored procedure
 CREATE PROCEDURE ComputeAverageScoreForUser(
     IN p_user_id INT
 )
