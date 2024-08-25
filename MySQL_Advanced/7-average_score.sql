@@ -1,17 +1,19 @@
 -- Create the stored procedure
-CREATE PROCEDURE ComputeAverageScoreForUser(
-    IN p_user_id INT
-)
+DELIMITER $$
+
+CREATE PROCEDURE ComputeAverageScoreForUser(IN user_id INT)
 BEGIN
-    DECLARE v_average_score FLOAT DEFAULT 0;
+    DECLARE avg_score FLOAT;
 
-    -- Calculate the average score for the given user
-    SELECT IFNULL(AVG(score), 0) INTO v_average_score
+    -- Compute the average score for the user from the corrections table
+    SELECT AVG(score) INTO avg_score
     FROM corrections
-    WHERE user_id = p_user_id;
+    WHERE user_id = user_id;
 
-    -- Update the user's average score in the users table
+    -- Update the user's average_score in the users table
     UPDATE users
-    SET average_score = v_average_score
-    WHERE id = p_user_id;
-END;
+    SET average_score = avg_score
+    WHERE id = user_id;
+END $$
+
+DELIMITER ;
