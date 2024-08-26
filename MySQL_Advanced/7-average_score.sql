@@ -1,6 +1,8 @@
 -- Create the stored procedure
 DELIMITER $$
 
+DROP PROCEDURE IF EXISTS ComputeAverageScoreForUser;
+
 CREATE PROCEDURE ComputeAverageScoreForUser(IN user_id INT)
 BEGIN
     UPDATE users
