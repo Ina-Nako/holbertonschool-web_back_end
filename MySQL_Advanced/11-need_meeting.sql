@@ -1,5 +1,4 @@
---No table for a meeting
-
+-- Need meeting
 DROP VIEW IF EXISTS need_meeting;
 CREATE VIEW need_meeting AS
 SELECT name FROM students
